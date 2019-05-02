@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- DB접속정보 값을 가지고 있는 파일 설정 -->
+	<!-- 경로의 페키지명까지 풀네임으로 적을것 -->
+	<properties resource="com/shs/mybatis/db.properties"/> 
+	
+	<!-- 별명 부여 -->
+	<typeAliases>
+		<typeAlias type="com.shs.dto.MemberDTO" alias="MemberDTO"/>
+	</typeAliases>
+	
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+        <property name="username" value="java"/>
+        <property name="password" value="1234"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="com/shs/mybatis/SHSMapper.xml"/>
+  </mappers>
+</configuration>
