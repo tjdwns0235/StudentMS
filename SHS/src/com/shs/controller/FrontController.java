@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.shs.action.Action;
 import com.shs.action.ActionForward;
+import com.shs.action.DeletePlayAction;
 import com.shs.action.IndexAction;
 import com.shs.action.InsertAction;
 import com.shs.action.InsertPlayAction;
 import com.shs.action.IntroduceAction;
 import com.shs.action.SearchAction;
 import com.shs.action.SearchPlayAction;
+import com.shs.action.SelectPlayAction;
+import com.shs.action.UpdateAction;
+import com.shs.action.UpdatePlayAction;
 import com.shs.action.WelcomeAction;
 
 
@@ -44,6 +48,19 @@ public class FrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null; //Action에서 보낸  forward
 		
+		
+		//4 uri와 ctx를 빼서 경로를 생성한다
+		// uri = /SHS/insert.shs
+		// ctx = /SHS
+		// uri - ctx = /insert.shs
+		//생성된 경로 = /insert.shs
+		
+		
+		//(4) uri와 ctx를 빼서 경로를 생성한다
+		// uri = /SHS/insertPlay.shs
+		// ctx = /SHS
+		// uri - ctx = /insertPlay.shs
+		//생성된 경로 = /insertPlay.shs = command
 		String uri = request.getRequestURI();
 		String ctx = request.getContextPath();
 		String command = uri.substring(ctx.length());
@@ -54,14 +71,29 @@ public class FrontController extends HttpServlet {
 		
 		System.out.println("페이지이동 ===>" + command);
 		
+		//5. if문을 돌면서 생성한
+//		url주소(/insert.shs)와 같은 조건문을 탐색
+		//(5) if문을 돌면서 생성한
+//		url주소(/insertPlay.shs)와 같은 조건문을 탐색
 		if (command.equals("/index.shs")) {
 			action = new IndexAction();
 			forward = action.execute(request, response);
 		} else if (command.equals("/insert.shs")) {
+//			6.InsertAction 클래스 객체 생성후 생성된 action 인스턴스를 사용하여
+//			execute(request,response)함수를 실행
+//			매개변수로 request와 response를 전송
 			action = new InsertAction();
+			//9.InsertAction 클래스에서 보낸 return값(forward)를 전역변수 forward에 담음
 			forward = action.execute(request, response);
 		} else if (command.equals("/insertPlay.shs")) {
+			//6.InsertPlayAction 클래스 객체 생성후 생성된 action 인스턴스를 사용하여
+//			execute(request,response)함수를 실행
+//			매개변수로 request와 response를 전송
+			//*현재 jsp에서 보낸 input태그들의 값은 request에 담겨있음
+			//*execute() 함수를 실행 할 때 매개변수로 request를 전송함으로
+			// InsertPlayAction 클래스에서 input태그들의 값을 사용 할 수 있음
 			action = new InsertPlayAction();
+			//(20).InsertPlayAction 클래스에서 보낸 return값(forward)를 전역변수 forward에 담음
 			forward = action.execute(request, response);
 		} else if (command.equals("/welcome.shs")) {
 			action = new WelcomeAction();
@@ -75,18 +107,45 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("/introduce.shs")) {
 			action = new IntroduceAction();
 			forward = action.execute(request, response);
+		} else if (command.equals("/select.shs")) {
+			action = new SelectPlayAction();
+			forward = action.execute(request, response);
+		} else if (command.equals("/update.shs")) {
+			action = new UpdateAction();
+			forward = action.execute(request, response);
+		} else if (command.equals("/updatePlay.shs")) {
+			action = new UpdatePlayAction();
+			forward = action.execute(request, response);
+		}else if (command.equals("/delete.shs")) {
+			action = new DeletePlayAction();
+			forward = action.execute(request, response);
 		}
 		
 		
-		
+		//delete.shs?id="+ id
 		
 		//공통 분기 작업
+		//10. InsertAction에서 보낸 return값 forward를 사용하여 페이지 이동 경로와 방법 데이터를 전송
+		// forward.getPath = "shs_insert.jsp"
+		// forward.isRedirect() = false;
+		//forward가 null이 아니기 때문에 if문을 실행
+		
+		//(21). InsertPlayAction에서 보낸 return값 forward를 사용하여 페이지 이동 경로와 방법 데이터를 전송
+				// forward.getPath = "welcome.jsp"
+				// forward.isRedirect() = true;
+				//forward가 null이 아니기 때문에 if문을 실행
 		if (forward != null) {
+			//11. forward.isRedirect()가 false이기때문에
+			  // if문을 실행하지 않고 else문을 실행
+			//(21). forward.isRedirect()가 true이기때문에
+			  // if문을 실행
 			if (forward.isRedirect()) {
 				//page 전환시 redirect 방식
+				//(23).sendRedirect방식으로 'welcome.jsp' 페이지로 이동
 				response.sendRedirect(forward.getPath());
 			}else {
 				//page 전환시 forward방식
+				//12.forward방식으로 shs_insert.jsp 페이지로 이동
 				RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
 				rd.forward(request, response);
 			}

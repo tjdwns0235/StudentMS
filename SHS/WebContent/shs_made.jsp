@@ -94,7 +94,7 @@
 						ⓒ2019 nth Systems
 					</span>
 			</span>
-			<a href="#" class="back_Btn">뒤로가기</a>
+			<a href="index.shs" class="back_Btn">뒤로가기</a>
 		</div>
 
 </body>

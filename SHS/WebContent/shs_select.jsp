@@ -72,6 +72,16 @@
 		.table_data:hover {
 			background-color: lightyellow;
 		}
+		.name {
+			color:dodgerblue;
+		}
+		.cnt_text {
+			display: block;
+			text-align:right;
+			margin-top: -20px;
+			padding-right: 10px;
+			font-weight: 600;
+		}
 		th{padding: 5px;}
 		td {text-align: center; padding: 3px 0;}
 		tr {border-bottom: 1px dashed #bbbbbb;}
@@ -91,19 +101,24 @@
 					<th></th>
 					<th></th>
 				</tr>
-				<c:forEach items="${shslest}" var="mDto"> <!--${shslest}= EL태그에 담긴 shslest를 mDto로 담는다. -->
+				<c:forEach items="${shslist}" var="mDto"> <!--${shslest}= EL태그에 담긴 shslest를 mDto로 담는다. -->
 					<tr class="table_data">
 						<td>${mDto.sid}</td>
 						<td>${mDto.sname}</td>
 						<td>${mDto.sphone}</td>
-						<td><a href="#" class="uBtn">수정</a></td>
+						<td><a href="update.shs?id=${mDto.sid}" class="uBtn">수정</a></td>
 						<td><a href="#" class="dBtn">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
+		<div class="in_content">
+			<c:if test="${cnt > 0}">
+				<span class="cnt_text">총 인원 ${cnt}명</span>
+			</c:if>
+		</div>
 		<div class="div_index">
-			<a href="index" class="btn_index btn3">뒤로가기</a>
+			<a href="index.shs" class="btn_index btn3">뒤로가기</a>
 		</div>
 
 	</div>

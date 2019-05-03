@@ -34,7 +34,7 @@ public class SHSSelect extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("GET:출석부 출력");
 		
-		MemberDAO mDao = MemberDAO.gerInstance();
+		MemberDAO mDao = MemberDAO.getInstance();
 		List<MemberDTO> list = mDao.memSelect();
 		
 		//servlet에서 페이지 이동방법2가지

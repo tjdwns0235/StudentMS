@@ -49,7 +49,7 @@ public class SHSInsert extends HttpServlet {
 		String smajor = request.getParameter("input_major");
 		String sphone = request.getParameter("input_phone");
 		
-		MemberDAO mDao = MemberDAO.gerInstance();
+		MemberDAO mDao = MemberDAO.getInstance();
 		MemberDTO mDto = new MemberDTO(sname, sage, smajor, sphone);
 		
 		int result = mDao.memInsert(mDto);

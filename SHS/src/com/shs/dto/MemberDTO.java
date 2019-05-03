@@ -11,6 +11,15 @@ public class MemberDTO {
 	private Date regdate;
 	
 
+	public MemberDTO(int sid, String sname, int sage, String smajor, String sphone) {
+		super();
+		this.sid = sid;
+		this.sname = sname;
+		this.sage = sage;
+		this.smajor = smajor;
+		this.sphone = sphone;
+	}
+
 	public MemberDTO() {
 	}
 
