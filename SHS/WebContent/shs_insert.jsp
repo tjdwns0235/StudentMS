@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>학생등록</title>
+<link rel="stylesheet" href="css/common.css?v=1">
 <style type="text/css">
-<link rel="stylesheet" href="css/common.css">
+
 
 		.content {
 			width: 390px;
@@ -34,6 +35,8 @@
 			display: inline-block;
 			border-radius: 10px;
 			font-size: 17px;
+			border:none;
+			cursor: pointer;
 		}
 		.div_index {
 			padding-bottom: 30px;
@@ -68,6 +71,7 @@
 			outline: none;
 			border:1px solid #aaa;
 			padding: 0 10px;
+			backfround-color:white;
 		}
 		.btn_wrap {
 			display: flex;
@@ -117,7 +121,8 @@
 				</div>
 				<div class="div_index btn_wrap">
 					<a href="index.shs" class="btn_index btn3">취소</a>
-					<a href="#" class="btn_index btn1 submitBtn">등록</a>
+				<!-- 	<a href="#" class="btn_index btn1 submitBtn">등록</a> -->
+				<button type="submit" class="btn_index btn1 submitBtn">등록</button>
 				</div>
 			</form>
 </body>

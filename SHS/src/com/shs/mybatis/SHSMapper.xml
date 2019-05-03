@@ -13,4 +13,11 @@
 		SELECT * FROM shsmember
 		ORDER BY sid
 	</select>
+	
+	<select id="memSearch" parameterType="String" resultType="MemberDTO" >
+		<![CDATA[
+			SELECT * FROM shsmember
+			WHERE sname LIKE '%' ||#{name}|| '%'
+		]]>
+	</select>
 </mapper>
