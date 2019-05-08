@@ -137,7 +137,7 @@ public class FrontController extends HttpServlet {
 		if (forward != null) {
 			//11. forward.isRedirect()가 false이기때문에
 			  // if문을 실행하지 않고 else문을 실행
-			//(21). forward.isRedirect()가 true이기때문에
+			//(22). forward.isRedirect()가 true이기때문에
 			  // if문을 실행
 			if (forward.isRedirect()) {
 				//page 전환시 redirect 방식
